@@ -4,11 +4,15 @@
   "description": "Coloring Pages Search Application",
   "main": "server.js",
   "dependencies": {
+    "app-module-path": "^1.1.0",
     "body-parser": "^1.15.1",
     "cookie-parser": "^1.4.2",
     "cors": "^2.7.1",
     "express": "^4.13.4",
     "express-session": "^1.13.0",
+    "react": "^15.1.0",
+    "react-redux": "^4.4.5",
+    "redux": "^3.5.2"
   },
   "devDependencies": {},
   "scripts": {

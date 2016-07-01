@@ -43,3 +43,24 @@ export const changeCollection = (modalState) => {
 export const hideModal = (show) => {
   return { type: actions.HIDE_MODAL, show };
 };
+
+const ROOT_URL = 'http://localhost:1337';
+
+export const loginUser = ({ email, password }) => {
+  return function(dispatch) {
+    // Submit email/password to the server
+    request.post(`${ROOT_URL}/login`, { email, password });
+
+    // If request is good
+    // update state to indicate user is authenticated
+    // save JWT
+    // redirect to correct routes
+
+    // If request is bad
+    //show an error
+
+  }
+
+
+
+}

@@ -23,7 +23,7 @@ export default class Header extends Component {
                 <ul className="dropdown-menu">
                   <li><div onClick={event => this.homeReturn()} href="#">home</div></li>
                   <li><div onClick={event => this.goToProfilePage()} href="#">profile</div></li>
-                  <li><div onClick={event => this.goToSettings()} href="#">change password</div></li>
+                  <li><div onClick={event => this.goToPasswordReset()} href="#">change password</div></li>
                   <li><div onClick={event => this.goToRegister()} href="#">register</div></li>
                   <li role="separator" className="divider"></li>
                   <li><div onClick={event => this.goToLogin()} href="#">log in</div></li>
@@ -48,18 +48,18 @@ export default class Header extends Component {
     browserHistory.push('/browse');
   }
 
-  goToSettings() {
-    console.log("goToSettings");
-    browserHistory.push('/passwordreset');
+  goToPasswordReset() {
+    console.log("goToPasswordReset");
+    browserHistory.push('/auth/passwordreset');
   }
   goToLogin() {
     console.log("goToLogin");
-    browserHistory.push('/login');
+    browserHistory.push('/auth/login');
   }
 
   goToRegister() {
     console.log("goToRegister");
-    browserHistory.push('/registration');
+    browserHistory.push('/auth/registration');
   }
 
 

@@ -47,5 +47,5 @@ http_server.use( require( path.join( atlas_paths._APPS_, '/errors/app' )))
 http_server.listen(1337, function () {
   console.log('Example app listening on port 1337!')
 });
-
+console.log("http_server: ", http_server._router.stack);
 exports = http_server;

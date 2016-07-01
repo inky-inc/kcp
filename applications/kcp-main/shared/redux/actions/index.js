@@ -44,12 +44,12 @@ export const hideModal = (show) => {
   return { type: actions.HIDE_MODAL, show };
 };
 
-const ROOT_URL = 'http://localhost:1337';
+const ROOT_URL = 'http://localhost:3090';
 
 export const loginUser = ({ email, password }) => {
   return function(dispatch) {
     // Submit email/password to the server
-    request.post(`${ROOT_URL}/login`, { email, password });
+    request.post(`${ROOT_URL}/auth/login`, { email, password });
 
     // If request is good
     // update state to indicate user is authenticated

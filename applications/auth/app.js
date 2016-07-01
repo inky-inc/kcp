@@ -8,6 +8,7 @@ const path = require('path');
 const app = express();
 const router = require('./router');
 const mongoose = require('mongoose');
+const cors = require('cors');
 
 //DB
 mongoose.connect('mongodb://localhost:kcpAuth/kcpAuth');
@@ -15,6 +16,7 @@ mongoose.connect('mongodb://localhost:kcpAuth/kcpAuth');
 // ----------------
 
 app.use(morgan('combined'));
+app.use(cors());
 app.use(bodyParser.json({ type: '*/*'}));
 router(app)
 

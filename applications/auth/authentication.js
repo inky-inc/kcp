@@ -10,6 +10,7 @@ function tokenForUser(user) {
 
 exports.signin = function(req, res, next) {
   //give user a token
+  console.log("Inside signin");
   res.send({ token: tokenForUser(req.user) });
 
 }

@@ -40,7 +40,7 @@ import * as actions from '../../redux/actions';
             </fieldset>
             <fieldset className="form-group">
               <label>password:</label>
-              <input {...password} className="form-control" type="text" placeholder="password"/>
+              <input {...password} type="password" className="form-control"  placeholder="password"/>
             </fieldset>
             {this.renderAlert()}
             <button action="submit" className="btn btn-default btn-lg" >log in</button>

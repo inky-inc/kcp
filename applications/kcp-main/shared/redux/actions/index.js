@@ -2,6 +2,7 @@ import * as actions from '../constants/ActionTypes';
 import { browserHistory } from 'react-router';
 import request from 'axios';
 import _ from 'lodash';
+import { AUTH_USER, AUTH_ERROR } from './types';
 
 export const searchPictures = (term) => {
 	return { type: actions.FIND_PICTURES, term: term };
@@ -49,18 +50,29 @@ const ROOT_URL = 'http://localhost:3090';
 export const loginUser = ({ email, password }) => {
   return function(dispatch) {
     // Submit email/password to the server
-    request.post(`${ROOT_URL}/auth/login`, { email, password });
+    request.post(`${ROOT_URL}/auth/login`, { email, password })
+    .then(response => {
+      // If request is good
+      // update state to indicate user is authenticated
+      dispatch({ type: AUTH_USER });
+      // save JWT
+      localStorage.setItem('token', response.data.token);
+      // redirect to correct routes
+      browserHistory.push('/browse');
+    })
+    .catch(() => {
+      // If request is bad
+      //show an error
+      dispatch(authError('Bad Login Info'));
 
-    // If request is good
-    // update state to indicate user is authenticated
-    // save JWT
-    // redirect to correct routes
-
-    // If request is bad
-    //show an error
+    });
 
   }
+}
 
-
-
+export function authError(error) {
+  return {
+    type: AUTH_ERROR,
+    payload: error
+  };
 }

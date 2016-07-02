@@ -5,6 +5,7 @@ import search from './searchReducer';
 import modal from './modalReducer';
 import { routerReducer as routing } from 'react-router-redux'
 import { reducer as form } from 'redux-form';
+import authReducer from './authReducer';
 
 const rootReducer = combineReducers({
   pictures,
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
   search,
   modal,
   routing,
-  form
+  form,
+  auth: authReducer
 });
 
 export default rootReducer;

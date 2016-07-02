@@ -14,6 +14,16 @@ import * as actions from '../../redux/actions';
     this.props.loginUser({ email, password});
   }
 
+  renderAlert() {
+    if (this.props.errorMessage) {
+      return (
+        <div className="alert alert-danger">
+          <strong>ERROR</strong> {this.props.errorMessage}
+        </div>
+      );
+    }
+  }
+
 
 
   render() {
@@ -32,6 +42,7 @@ import * as actions from '../../redux/actions';
               <label>password:</label>
               <input {...password} className="form-control" type="text" placeholder="password"/>
             </fieldset>
+            {this.renderAlert()}
             <button action="submit" className="btn btn-default btn-lg" >log in</button>
           </form>
         </div>
@@ -41,7 +52,11 @@ import * as actions from '../../redux/actions';
   }
 }
 
+function mapStateToProps(state) {
+  return { errorMessage: state.auth.error };
+}
+
 export default reduxForm({
   form: 'login',
   fields: ['email', 'password']
-}, null, actions)(Login);
+}, mapStateToProps, actions)(Login);

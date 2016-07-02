@@ -14,8 +14,8 @@ export default (
   	<IndexRoute component={Home}/>
     <Route path="/admin" component={adminPlaceholder} />
     <Route path="/profile" component={Profile} />
-    <Route path="/registration" component={Registration} />
-    <Route path="/login" component={Login} />
-    <Route path="/passwordreset" component={PasswordReset} />
+    <Route path="/auth/registration" component={Registration} />
+    <Route path="/auth/login" component={Login} />
+    <Route path="/auth/passwordreset" component={PasswordReset} />
   </Route>
 )

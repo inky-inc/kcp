@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Modal, Col, Row } from 'react-bootstrap';
+import { Modal } from 'react-bootstrap';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import ResultsListItem from '../../components/DefaultResult/resultsListItem';
@@ -21,28 +21,28 @@ export default class ResultModal extends Component {
   handlePrevious () {
     let colIdx = this.props.colIdx - 1; console.log(colIdx);
     let aliases = this.props.collectionData[this.props.collections[colIdx].uuid].aliases; console.log(aliases);
-    this.props.actions.changeCollection({colIdx, aliases});
+    this.props.actions.changeCollection({colIdx, aliases, direction: 'right'});
   }
 
   handleNext () {
     let colIdx = this.props.colIdx + 1;
     let aliases = this.props.collectionData[this.props.collections[colIdx].uuid].aliases;
-    this.props.actions.changeCollection({colIdx, aliases});
+    this.props.actions.changeCollection({colIdx, aliases, direction: 'left'});
   }
 
   render () {
     const galleryItems = this.props.aliases.map((alias, idx, arr) => {
       return (
-        <ResultsListItem 
-          image={`/media/alias/${alias}`} 
-          idx={idx} 
-          showImage={this.handleSelect} 
+        <ResultsListItem
+          image={`/media/alias/${alias}`}
+          idx={idx}
+          showImage={this.handleSelect}
           selected={idx === this.props.imgIdx}/>
       );
     });
 
     return (
-      <Modal className="Modal-Container" show={this.props.show} onHide={this.handleClose} bsSize="large" aria-labelledby="contained-modal-title-lg">
+      <Modal className={"modal-container " + this.props.direction} show={this.props.show} onHide={this.handleClose} bsSize="large" aria-labelledby="contained-modal-title-lg">
         <Modal.Header closeButton={true} onHide={this.handleClose}/>
         <Modal.Body>
           <div className="row">
@@ -54,11 +54,10 @@ export default class ResultModal extends Component {
                 {galleryItems}
               </div>
             </div>
-
           </div>
-                        <div className='modalButtonsWrap'>
-                <button type="button" className="btn btn-primary btn-lg raised" onClick={() => { window.frames[0].print() } }>Print</button>
-              </div>
+          <div className='modalButtonsWrap'>
+              <button type="button" className="btn btn-primary btn-lg raised" onClick={() => { window.frames[0].print() } }>Print</button>
+            </div>
         </Modal.Body>
         <Modal.Footer>
           <div className={this.props.colIdx ? 'left-arrow' : 'left-arrow hidden'} onClick={this.handlePrevious}>
@@ -84,7 +83,8 @@ const mapStateToProps = ({modal}) => ({
   collections: modal.collections,
   colIdx: modal.colIdx,
   aliases: modal.aliases, 
-  imgIdx: modal.imgIdx 
+  imgIdx: modal.imgIdx,
+  direction: modal.direction
 });
 
 

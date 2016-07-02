@@ -8,7 +8,7 @@ const LocalStrategy = require('passport-local');
 //local strategy
 const localOptions = { usernameField: 'email'};
 const localLogin = new LocalStrategy(localOptions, function(email, password, done) {
-
+console.log("Inside passport local login");
 //verify email and password
 
   User.findOne({ email: email }, function(err, user) {

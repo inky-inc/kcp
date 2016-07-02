@@ -74,9 +74,7 @@ export default class ResultsContainer extends Component {
       <div className="main-container col-md-10 col-md-push-2">
         {pictures}
         {categories}
-        <div className="modal-wrapper">
-          <ResultModal />
-        </div>
+        <ResultModal />
       </div>
     );
   }

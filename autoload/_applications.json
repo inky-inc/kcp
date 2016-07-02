@@ -1,5 +1,11 @@
 [
-
+	{
+		"app_name": "Kidz Coloring Pages Authorization",
+		"app_description": "KCP Authorization",
+		"base_url": "/auth",
+		"app_dir": "/auth", 
+		"entry": "/app.js"
+	},
 	{
 		"app_name": "Kidz Coloring Pages API",
 		"app_description": "The KCP Data API",

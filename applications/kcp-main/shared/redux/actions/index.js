@@ -43,6 +43,14 @@ export const changeCollection = (modalState) => {
   return { type: actions.CHANGE_COLLECTION, ...modalState };
 };
 
+export const addPin = (pinState) => {
+  return { type: actions.ADD_PIN, ...pinState};
+};
+
+export const removePin = (pinState) => {
+  return { type: actions.REMOVE_PIN, ...pinState};
+};
+
 export const hideModal = (show) => {
   return { type: actions.HIDE_MODAL, show };
 };

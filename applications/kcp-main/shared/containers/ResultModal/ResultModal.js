@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import ReactCSSTransitionGroup from 'react/lib/ReactCSSTransitionGroup';
 import { Modal } from 'react-bootstrap';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -43,38 +42,36 @@ export default class ResultModal extends Component {
     });
 
     return (
-      <ReactCSSTransitionGroup transitionName="modal-transition" transitionEnterTimeout={500} transitionLeaveTimeout={500}>
-        <Modal className={"modal-container " + this.props.direction} show={this.props.show} onHide={this.handleClose} bsSize="large" aria-labelledby="contained-modal-title-lg">
-          <Modal.Header closeButton={true} onHide={this.handleClose}/>
-          <Modal.Body>
-            <div className="row">
-              <div className="col-md-6 preview">
-                <iframe id='preview' src={`/media/alias/${this.props.aliases[this.props.imgIdx]}`} onLoad={() => window.apply_styles()}></iframe>
-              </div>
-              <div className="col-md-6 more">
-                <div className='galleryWrap'>
-                  {galleryItems}
-                </div>
+      <Modal className={"modal-container " + this.props.direction} show={this.props.show} onHide={this.handleClose} bsSize="large" aria-labelledby="contained-modal-title-lg">
+        <Modal.Header closeButton={true} onHide={this.handleClose}/>
+        <Modal.Body>
+          <div className="row">
+            <div className="col-md-6 preview">
+              <iframe id='preview' src={`/media/alias/${this.props.aliases[this.props.imgIdx]}`} onLoad={() => window.apply_styles()}></iframe>
+            </div>
+            <div className="col-md-6 more">
+              <div className='galleryWrap'>
+                {galleryItems}
               </div>
             </div>
-            <div className='modalButtonsWrap'>
-                <button type="button" className="btn btn-primary btn-lg raised" onClick={() => { window.frames[0].print() } }>Print</button>
-              </div>
-          </Modal.Body>
-          <Modal.Footer>
-            <div className={this.props.colIdx ? 'left-arrow' : 'left-arrow hidden'} onClick={this.handlePrevious}>
-              <div className="bg">
-                <i className='fa fa-arrow-left' aria-hidden='true'></i>
-              </div>
+          </div>
+          <div className='modalButtonsWrap'>
+              <button type="button" className="btn btn-primary btn-lg raised" onClick={() => { window.frames[0].print() } }>Print</button>
             </div>
-            <div className={this.props.colIdx === this.props.collections.length - 1 ? 'right-arrow hidden' : 'right-arrow'} onClick={this.handleNext}>
-              <div className="bg">
-                <i className='fa fa-arrow-right' aria-hidden='true'></i>
-              </div>
+        </Modal.Body>
+        <Modal.Footer>
+          <div className={this.props.colIdx ? 'left-arrow' : 'left-arrow hidden'} onClick={this.handlePrevious}>
+            <div className="bg">
+              <i className='fa fa-arrow-left' aria-hidden='true'></i>
             </div>
-          </Modal.Footer>
-        </Modal>
-      </ReactCSSTransitionGroup>
+          </div>
+          <div className={this.props.colIdx === this.props.collections.length - 1 ? 'right-arrow hidden' : 'right-arrow'} onClick={this.handleNext}>
+            <div className="bg">
+              <i className='fa fa-arrow-right' aria-hidden='true'></i>
+            </div>
+          </div>
+        </Modal.Footer>
+      </Modal>
     );
   }
 }

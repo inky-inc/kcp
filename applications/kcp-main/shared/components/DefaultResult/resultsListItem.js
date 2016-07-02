@@ -5,13 +5,9 @@ const ResultsListItem = ({image, idx, showImage, selected}) => {
   const handleClick = (e) => showImage(idx);
   
   return (
-    <div className={selected ? 'thumbWrap selected' : 'thumbWrap'}>
+    <div className={selected ? 'thumbWrap selected' : 'thumbWrap'} onClick={(e) => handleClick(e)} >
       <figure>
-        <img
-          src={image}
-          className='collectionItem'
-          onClick={(e) => handleClick(e)}
-        />
+        <img src={image} className='collectionItem' />
       </figure>
     </div>
   );

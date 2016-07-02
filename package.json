@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/rexfordkelly-on-JS/Atlas/issues"
   },
-  "homepage": "https://github.com/rexfordkelly-on-JS/Atlas#readme"
+  "homepage": "https://github.com/rexfordkelly-on-JS/Atlas#readme",
+  "dependencies": {
+    "cors": "^2.7.1"
+  }
 }

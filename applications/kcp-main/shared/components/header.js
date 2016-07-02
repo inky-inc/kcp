@@ -2,6 +2,7 @@ import React, {PropTypes, Component} from 'react';
 import { browserHistory } from 'react-router';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
+import * as actions from '../redux/actions';
 
 class Header extends Component {
   constructor(props) {
@@ -16,7 +17,7 @@ class Header extends Component {
         <li><div onClick={event => this.goToProfilePage()} href="#" key={1}>profile</div></li>,
         <li><div onClick={event => this.goToPasswordReset()} href="#" key={2}>change password</div></li>,
         <li role="separator" className="divider" key={3}></li>,
-        <li><div href="#" key={4}>log out</div></li>
+        <li><div onClick={event => this.logout()} href="#" key={4}>log out</div></li>
       ];
 
     } else {
@@ -76,6 +77,12 @@ class Header extends Component {
     browserHistory.push('/auth/registration');
   }
 
+  logout(){
+    console.log("logging out");
+    this.props.logoutUser();
+    this.homeReturn();
+  }
+
 
 
 };
@@ -88,4 +95,4 @@ function mapStateToProps(state) {
 }
 
 
-export default connect(mapStateToProps)(Header);
+export default connect(mapStateToProps, actions)(Header);

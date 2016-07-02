@@ -3,7 +3,7 @@ import { browserHistory } from 'react-router';
 import request from 'axios';
 import util from '../../utility/utility';
 import _ from 'lodash';
-import { AUTH_USER, AUTH_ERROR } from './types';
+import { AUTH_USER, UNAUTH_USER, AUTH_ERROR } from './types';
 
 export const searchPictures = (term) => {
 	return { type: actions.FIND_PICTURES, term: term };
@@ -85,4 +85,10 @@ export function authError(error) {
     type: AUTH_ERROR,
     payload: error
   };
+}
+
+export function logoutUser() {
+  localStorage.removeItem('token');
+
+  return { type: UNAUTH_USER };
 }

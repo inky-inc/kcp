@@ -64,9 +64,11 @@ export const loginUser = ({ email, password }) => {
     .then(response => {
       // If request is good
       // update state to indicate user is authenticated
-      dispatch({ type: AUTH_USER });
+      console.log("response and username: ", response.data.username);
+      dispatch(setLoggedInUser());
       // save JWT
       localStorage.setItem('token', response.data.token);
+      localStorage.setItem('kcpUsername', response.data.username);
       // redirect to correct routes
       browserHistory.push('/browse');
     })
@@ -80,6 +82,30 @@ export const loginUser = ({ email, password }) => {
   }
 }
 
+export const registerUser = ({ username, email, password }) => {
+  console.log("inside registerUser");
+  return function(dispatch) {
+    request.post(`${ROOT_URL}/auth/registration`, {  username, email, password })
+      .then(response => {
+        dispatch(setLoggedInUser());
+        localStorage.setItem('token', response.data.token);
+        localStorage.setItem('kcpUsername', response.data.username);
+        browserHistory.push('/browse');
+
+      })
+      .catch(response => dispatch(authError(response.data.error)));
+
+  }
+
+}
+
+export function setLoggedInUser(){
+  console.log("setLoggedInUser");
+  return {
+    type: AUTH_USER
+  };
+}
+
 export function authError(error) {
   return {
     type: AUTH_ERROR,
@@ -89,6 +115,7 @@ export function authError(error) {
 
 export function logoutUser() {
   localStorage.removeItem('token');
+  localStorage.removeItem('kcpUsername');
 
   return { type: UNAUTH_USER };
 }

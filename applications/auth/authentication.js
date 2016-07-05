@@ -11,13 +11,16 @@ function tokenForUser(user) {
 exports.signin = function(req, res, next) {
   //give user a token
   console.log("Inside signin");
-  res.send({ token: tokenForUser(req.user) });
+
+  console.log("username inside signin: ", req.user.username);
+  res.send({ token: tokenForUser(req.user),
+  username: req.user.username  });
 
 }
 
 exports.signup = function(req, res, next) {
   // res.send({ success: 'true'});
-  // console.log(req.body);
+  console.log("req.body: " , req.body);
   const email = req.body.email;
   const username = req.body.username
   const password = req.body.password;
@@ -44,7 +47,8 @@ exports.signup = function(req, res, next) {
     user.save(function(err) {
       if (err) { return next(err); }
       //respond to request indicating user was created
-      res.json({ token: tokenForUser(user) });
+      console.log("user created. username: ", user.username);
+      res.json({ token: tokenForUser(user), username: user.username });
     });
 
 

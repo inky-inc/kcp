@@ -11,7 +11,7 @@ import * as actions from '../../redux/actions';
   handleFormSubmit({ email, password }) {
     console.log(email, password);
     //log user in
-    this.props.loginUser({ email, password});
+    this.props.loginUser({ email, password });
   }
 
   renderAlert() {
@@ -23,8 +23,6 @@ import * as actions from '../../redux/actions';
       );
     }
   }
-
-
 
   render() {
     const { handleSubmit, fields: { email, password} } = this.props;

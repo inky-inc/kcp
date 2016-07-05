@@ -13,6 +13,7 @@ class Header extends Component {
     //if authenticated
     if(this.props.authenticated) {
       console.log("authenticated? ", this.props.authenticated);
+      
       return [
         <li><div onClick={event => this.goToProfilePage()} href="#" key={1}>profile</div></li>,
         <li><div onClick={event => this.goToPasswordReset()} href="#" key={2}>change password</div></li>,
@@ -31,6 +32,12 @@ class Header extends Component {
 
   }
 
+  renderLinks2() {
+    if(this.props.authenticated){
+      return (<li><div><h3>Hello, {localStorage.kcpUsername}</h3></div></li>);
+    }
+  }
+
 
   render() {
     return (
@@ -38,6 +45,7 @@ class Header extends Component {
         <div className="container-fluid">
           {/*KCP title button*/}
             <ul className="nav navbar-nav navbar-right">
+              {this.renderLinks2()}
               <li className="dropdown">
                 <button href="#" className="btn btn-default dropdown-toggle" data-toggle="dropdown" type="button" aria-haspopup="true" aria-expanded="false">menu <span className="caret"></span></button>
                 <ul className="dropdown-menu">
